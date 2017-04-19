@@ -7,9 +7,8 @@ import React, {Component} from 'react';
 import {Provider} from 'react-redux';
 import {BrowserRouter, Route} from 'react-router-dom';
 
-class App extends Component {
+class Main extends Component {
   static propTypes = {
-    history:  PropTypes.object.isRequired,
     location: PropTypes.object.isRequired
   }
 
@@ -27,15 +26,15 @@ class App extends Component {
     );
   }
 }
-
-const Main = props =>
-  <Provider store={props.store}>
+const App = ({store, history}) => 
+  <Provider store={store}>
     <BrowserRouter>
       <div>
-        <Route path="/" component={App} />
+        <Route path="/" component={Main} />
         <Route path="/auth" component={Authenticator} />
       </div>
     </BrowserRouter>
   </Provider>
+;
 
-export default Main;
+export default App;

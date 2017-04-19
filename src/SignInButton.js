@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import qs from 'qs';
 
 const randomString = length => {
@@ -8,7 +9,13 @@ const randomString = length => {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
     return text;
-}
+};
+
+const mapStateToProps = (state) => {
+  return {
+    authToken: state.auth.token
+  }
+};
 
 class SignInButton extends Component {
   // code=AQT_5lXA30eWBiWi9i0jLHGblni7qBTovf19Onu-f75o8hURzGOBtsZDTrVA4oKRQhPlopbcO9sRgxy8iRdXgpYhYhwl-nK4A8PTI-uqpO7atpV5GRA
@@ -30,7 +37,7 @@ class SignInButton extends Component {
   }
 
   render() {
-    if (window.sessionStorage.authToken) {
+    if (this.props.authToken) {
       return null;
     } else {
       return (
@@ -40,4 +47,4 @@ class SignInButton extends Component {
   }
 }
 
-export default SignInButton;
+export default connect(mapStateToProps)(SignInButton);
