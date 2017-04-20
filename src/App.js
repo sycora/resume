@@ -26,7 +26,7 @@ class Main extends Component {
     );
   }
 }
-const App = ({store, history}) => 
+const App = ({store}) =>
   <Provider store={store}>
     <BrowserRouter>
       <div>
