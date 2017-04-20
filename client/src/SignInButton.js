@@ -1,4 +1,4 @@
-import {setCSRF} from './actions';
+import {setCSRF} from './linkedInActions';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
