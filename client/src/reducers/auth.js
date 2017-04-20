@@ -12,12 +12,12 @@ const auth = (state = {}, action) => {
       return Object.assign({}, state, {
         csrf: action.csrf
       });
-    case 'SET_OATH_OPTIONS':
+    case 'SET_OAUTH_OPTIONS':
       console.log(Object.assign({}, state, {
-        oathOptions: action.oAuthOptions
+        oAuthOptions: action.oAuthOptions
       }));
       return Object.assign({}, state, {
-        oathOptions: action.oAuthOptions
+        oAuthOptions: action.oAuthOptions
       });
     default:
       return state;

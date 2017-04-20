@@ -24,7 +24,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     authCode: state.auth.code,
-    oauthOptions: state.auth.oathOptions
+    oAuthOptions: state.auth.oAuthOptions
   }
 };
 
@@ -38,7 +38,7 @@ class SignInButton extends Component {
     let csrf = randomString(8);
     this.props.setCSRF(csrf);
     let options = {
-      ...this.props.oauthOptions,
+      ...this.props.oAuthOptions,
       state: csrf
     };
     window.location = 'https://www.linkedin.com/oauth/v2/authorization?' + qs.stringify(options);

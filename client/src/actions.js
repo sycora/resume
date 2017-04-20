@@ -14,7 +14,7 @@ export function setCSRF(csrf) {
 
 export function setOAuthOptions(oAuthOptions) {
   return {
-    type: 'SET_OATH_OPTIONS',
+    type: 'SET_OAUTH_OPTIONS',
     oAuthOptions: oAuthOptions
   }
 }
