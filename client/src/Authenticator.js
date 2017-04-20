@@ -50,29 +50,34 @@ class Authenticator extends Component {
   }
 
   requestAccessToken() {
-    // let {
-    //   authCode,
-    //   oauthOptions
-    // } = this.props;
+    let {
+      authCode,
+      oauthOptions
+    } = this.props;
     // let formData = new FormData();
-    // formData.set('grant_type', 'authorization_code');
-    // formData.set('code', authCode);
-    // formData.set('redirect_uri', oauthOptions.redirect_uri);
-    // formData.set('client_id', oauthOptions.client_id);
+    let form = {
+      grant_type: 'authorization_code',
+      code: authCode,
+      redirect_uri: oauthOptions.redirect_uri,
+      client_id: oauthOptions.client_id
+    };
 
-    // let myRequest = new Request('[accessTokenURL]', {
-    //   method: 'POST',
-    //   body: formData
-    // });
+    let myRequest = new Request('https://us-central1-sycora-resume.cloudfunctions.net/accessToken', {
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      method: 'POST',
+      body: JSON.stringify(form)
+    });
 
-    // fetch(myRequest)
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       return console.log(response.json());
-    //     } else {
-    //       console.log('An error occurred accessing the api server')
-    //     }
-    //   })
+    fetch(myRequest)
+      .then((response) => {
+        if (response.status === 200) {
+          return console.log(response);
+        } else {
+          console.log('An error occurred accessing the api server')
+        }
+      })
   }
 
   render() {
