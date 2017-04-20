@@ -31,7 +31,7 @@
       }).then((response) => {
         return response.json().then((auth) => {
           if (response.status === 200) {
-            window.sessionStorage.setItem('auth_token', auth.auth_token);
+            window.sessionStorage.setItem('access_token', auth.access_token);
             window.sessionStorage.setItem('expires_in', auth.expires_in);
             window.location = '/';
           } else {

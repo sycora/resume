@@ -15,7 +15,7 @@ function fetchProfile() {
     return fetch(
       `https://api.linkedin.com/v1/people/~`, {
       headers: {
-        'Authorization': `Bearer ${window.sessionStorage.authToken}`,
+        'Authorization': `Bearer ${window.sessionStorage.access_token}`,
         'x-li-format': 'json'
       })
       .then(response => response.json())
