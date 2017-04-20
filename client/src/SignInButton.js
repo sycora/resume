@@ -1,4 +1,3 @@
-import {setCSRF} from './linkedInActions';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
@@ -13,30 +12,20 @@ const randomString = length => {
   return text;
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setCSRF: (csrf) => {
-      dispatch(setCSRF(csrf))
-    }
-  }
-};
-
 const mapStateToProps = (state) => {
   return {
-    authCode: state.auth.code
+    accessToken: state.auth.access_token
   }
 };
 
 class SignInButton extends Component {
   static propTypes = {
-    authCode: PropTypes.string,
-    setCSRF: PropTypes.func.isRequired
+    accessToken: PropTypes.string
   }
 
   signInClick() {
     // TODO: move into redux action
     let csrf = randomString(8);
-    this.props.setCSRF(csrf);
     let options = {
       client_id: '77oc2rb90riu2a',
       response_type: 'code',
@@ -48,7 +37,7 @@ class SignInButton extends Component {
   }
 
   render() {
-    if (this.props.authCode) {
+    if (this.props.accessToken) {
       return null;
     } else {
       return (
@@ -58,4 +47,4 @@ class SignInButton extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInButton);
+export default connect(mapStateToProps, {})(SignInButton);

@@ -3,22 +3,11 @@ import {combineReducers} from 'redux';
 const initialState = {};
 
 const auth = (state = initialState, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return Object.assign({}, state, {
-        loggedIn: true
-      });
-    case 'SET_AUTH_CODE':
-      return Object.assign({}, state, {
-        code: action.code
-      });
-    case 'SET_CSRF':
-      return Object.assign({}, state, {
-        csrf: action.csrf
-      });
-    default:
-      return state;
-  }
+  return {
+    ...state,
+    access_token: window.sessionStorage.getItem('access_token'),
+    expires_in: window.sessionStorage.getItem('expires_in')
+  };
 }
 
 const getProfile = (state = initialState, action) => {
