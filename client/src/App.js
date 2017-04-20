@@ -1,5 +1,4 @@
 import './App.css';
-import Authenticator from './Authenticator';
 import SignInButton from './SignInButton';
 import logo from './logo.svg';
 import PropTypes from 'prop-types';
@@ -31,7 +30,6 @@ const App = ({store}) =>
     <HashRouter>
       <div>
         <Route path="/" component={Main} />
-        <Route path="/auth" component={Authenticator} />
       </div>
     </HashRouter>
   </Provider>

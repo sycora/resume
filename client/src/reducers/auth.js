@@ -13,9 +13,6 @@ const auth = (state = {}, action) => {
         csrf: action.csrf
       });
     case 'SET_OAUTH_OPTIONS':
-      console.log(Object.assign({}, state, {
-        oAuthOptions: action.oAuthOptions
-      }));
       return Object.assign({}, state, {
         oAuthOptions: action.oAuthOptions
       });

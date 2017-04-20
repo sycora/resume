@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm run build && gsutil -m cp -r build/* gs://resume.sycora.com/",
+    "deploy": "npm run build && gsutil -m -h 'Cache-Control:private, no-cache, no-store, must-revalidate' cp -r build/* gs://resume.sycora.com/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
