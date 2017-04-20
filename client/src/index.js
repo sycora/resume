@@ -41,7 +41,7 @@ store.subscribe(() => {
 store.dispatch(setOAuthOptions({
   client_id: '77oc2rb90riu2a',
   response_type: 'code',
-  redirect_uri: window.location.origin + '/auth.html?2',
+  redirect_uri: 'http://resume.sycora.com/auth.html',
   scope: 'r_basicprofile'
 }));
 
