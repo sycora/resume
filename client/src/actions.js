@@ -11,10 +11,3 @@ export function setCSRF(csrf) {
     csrf: csrf
   }
 }
-
-export function setOAuthOptions(oAuthOptions) {
-  return {
-    type: 'SET_OAUTH_OPTIONS',
-    oAuthOptions: oAuthOptions
-  }
-}

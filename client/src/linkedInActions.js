@@ -1,7 +1,6 @@
 export const login = (code, state) => ({type: 'LOGIN', code, state})
 
 function receiveProfile(json) {
-  console.log(json);
   return {
     type: 'RECEIVE_PROFILE',
     profile: json,

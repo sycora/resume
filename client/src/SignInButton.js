@@ -23,8 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    authCode: state.auth.code,
-    oAuthOptions: state.auth.oAuthOptions
+    authCode: state.auth.code
   }
 };
 
@@ -35,10 +34,14 @@ class SignInButton extends Component {
   }
 
   signInClick() {
+    // TODO: move into redux action
     let csrf = randomString(8);
     this.props.setCSRF(csrf);
     let options = {
-      ...this.props.oAuthOptions,
+      client_id: '77oc2rb90riu2a',
+      response_type: 'code',
+      redirect_uri: 'http://resume.sycora.com/auth.html',
+      scope: 'r_basicprofile',
       state: csrf
     };
     window.location = 'https://www.linkedin.com/oauth/v2/authorization?' + qs.stringify(options);
