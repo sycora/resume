@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {HashRouter, Route} from 'react-router-dom';
 
 class Main extends Component {
   static propTypes = {
@@ -28,12 +28,12 @@ class Main extends Component {
 }
 const App = ({store}) =>
   <Provider store={store}>
-    <BrowserRouter>
+    <HashRouter>
       <div>
         <Route path="/" component={Main} />
         <Route path="/auth" component={Authenticator} />
       </div>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>
 ;
 

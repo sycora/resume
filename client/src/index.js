@@ -24,7 +24,7 @@ export const loadAuth = () => {
   }
 }
 
-const persistedState = loadAuth()
+const persistedState = loadAuth();
 const store = createStore(
   rootReducer,
   persistedState
