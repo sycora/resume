@@ -7,13 +7,13 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {HashRouter, Route} from 'react-router-dom';
 import {applyMiddleware, createStore} from 'redux'
-import createLogger from 'redux-logger'
+import {createLogger} from 'redux-logger'
 import thunk from 'redux-thunk';
 
 ReactDOM.render(
   <Provider store={createStore(
     reducers,
-    applyMiddleware(thunk, createLogger)
+    applyMiddleware(thunk, createLogger())
   )}>
     <HashRouter>
       <div>
