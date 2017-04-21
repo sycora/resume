@@ -4,7 +4,7 @@ const auth = (state = {}, action) => {
   return {
     ...state,
     access_token: window.sessionStorage.getItem('access_token'),
-    expires_in: window.sessionStorage.getItem('expires_in')
+    expires: window.sessionStorage.getItem('expires')
   };
 }
 

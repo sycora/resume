@@ -24,10 +24,11 @@ const fetchProfile = state => dispatch => {
 
 const shouldFetchProfile = state => {
   const profile = state.profile;
-  if (!profile) {
-    return true;
-  } else if (profile.isFetching) {
+  if (profile.isFetching) {
     return false;
+  }
+  if (!profile.profile) {
+    return true;
   } else {
     return profile.didInvalidate;
   }
