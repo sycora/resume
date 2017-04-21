@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import React, {Component} from 'react';
 import qs from 'qs';
 
 const randomString = length => {
@@ -10,12 +9,6 @@ const randomString = length => {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
   }
   return text;
-};
-
-const mapStateToProps = (state) => {
-  return {
-    accessToken: state.auth.access_token
-  }
 };
 
 class SignInButton extends Component {
@@ -47,4 +40,4 @@ class SignInButton extends Component {
   }
 }
 
-export default connect(mapStateToProps, {})(SignInButton);
+export default SignInButton;

@@ -32,7 +32,7 @@
       .then(response => response.json())
       .then(auth => {
         window.sessionStorage.setItem('access_token', auth.access_token);
-        window.sessionStorage.setItem('expires_in', auth.expires_in);
+        window.sessionStorage.setItem('expires', Date.now() + auth.expires_in);
         window.location = '/';
       })
       .catch(err => {
