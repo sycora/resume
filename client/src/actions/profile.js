@@ -24,7 +24,7 @@ const shouldFetchProfile = state => {
   return me.didInvalidate;
 }
 
-export const fetchProfileIfNeeded = () => {
+export const profileLoader = () => {
   return (dispatch, getState) => {
     if (shouldFetchProfile(getState())) {
       return dispatch(fetchProfile(getState()));

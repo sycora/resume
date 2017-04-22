@@ -23,7 +23,7 @@ const shouldFetchAuth = state => {
   return auth.didInvalidate;
 }
 
-export const fetchAuthIfNeeded = () => {
+export const authLoader = () => {
   return (dispatch, getState) => {
     if (shouldFetchAuth(getState())) {
       return dispatch(fetchAuth(getState()));

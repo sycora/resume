@@ -2,7 +2,7 @@ import './App.css';
 import Profile from './Profile';
 import SignInButton from '../components/SignInButton';
 import logo from './logo.svg';
-import {fetchAuthIfNeeded, logout} from '../actions/auth';
+import {authLoader, logout} from '../actions/auth';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     const {
       auth,
-      fetchAuthIfNeeded,
+      authLoader,
       isFetching,
       logout
     } = this.props;
@@ -28,7 +28,7 @@ class App extends Component {
         </div>
         <p className="App-intro">
           {!isFetching &&
-            <SignInButton id={auth.id} signInClick={fetchAuthIfNeeded} signOutClick={logout}/>
+            <SignInButton id={auth.id} signInClick={authLoader} signOutClick={logout}/>
           }
         </p>
         {isEmpty
@@ -55,6 +55,6 @@ const reduxStateToProps = state => {
 }
 
 export default connect(reduxStateToProps, {
-  fetchAuthIfNeeded,
+  authLoader,
   logout
 })(App)

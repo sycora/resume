@@ -1,11 +1,12 @@
-import {fetchProfileIfNeeded} from '../actions/profile';
+import {profileLoader} from '../actions/profile';
+import User from '../components/User';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 class Profile extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.id) {
-      this.props.fetchProfileIfNeeded();
+      this.props.profileLoader();
     }
   }
 
@@ -14,16 +15,12 @@ class Profile extends Component {
       me,
       isFetching
     } = this.props;
-    const isEmpty = me.profile == null;
+    const profile = me.profile;
     return (
       <div>
-        {isEmpty
+        {!profile
           ? (isFetching ? <h3>Getting profile...</h3> : <h3>No profile.</h3>)
-          : <div>
-              <h3>{me.profile.headline}</h3>
-              <img alt="profile" src={me.profile.pictureUrl} />
-              <span>{me.profile.firstName} {me.profile.lastName}</span>
-            </div>
+          : <User {...profile} />
         }
       </div>
     );
@@ -38,10 +35,7 @@ const reduxStateToProps = state => {
 
   const {
     isFetching
-  } = me || {
-    isFetching: true,
-    me: null
-  }
+  } = me;
 
   return {
     auth,
@@ -51,5 +45,5 @@ const reduxStateToProps = state => {
 }
 
 export default connect(reduxStateToProps, {
-  fetchProfileIfNeeded
+  profileLoader
 })(Profile)
