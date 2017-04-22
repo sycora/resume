@@ -1,20 +1,9 @@
-import {combineReducers} from 'redux';
-
-const auth = (state = {}, action) => {
-  return {
-    ...state,
-    access_token: window.sessionStorage.getItem('access_token'),
-    expires: window.sessionStorage.getItem('expires')
-  };
-}
-
 const initialProfileState = {
   isFetching: false,
-  didInvalidate: false,
-  profile: null
+  didInvalidate: false
 };
 
-const profile = (state = initialProfileState, action) => {
+export const me = (state = initialProfileState, action) => {
   switch (action.type) {
     case 'INVALIDATE_PROFILE':
       return {
@@ -33,14 +22,15 @@ const profile = (state = initialProfileState, action) => {
         didInvalidate: false,
         isFetching: false,
         lastUpdated: action.receivedAt,
-        profile: action.profile
+        profile: action.item
       };
+    
+  case 'LOGOUT':
+    return {
+      ...state,
+      profile: null
+    }
     default:
      return state;
   }
 }
-
-export const reducers = combineReducers({
-  auth: auth,
-  profile: profile
-});

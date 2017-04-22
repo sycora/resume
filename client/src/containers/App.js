@@ -1,8 +1,8 @@
 import './App.css';
-import Profile from '../components/Profile';
+import Profile from './Profile';
 import SignInButton from '../components/SignInButton';
 import logo from './logo.svg';
-import {fetchProfileIfNeeded} from '../linkedInActions';
+import {fetchAuthIfNeeded, logout} from '../actions/auth';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
@@ -12,26 +12,14 @@ class App extends Component {
     location: PropTypes.object.isRequired
   }
 
-  componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch(fetchProfileIfNeeded())
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.profile !== this.props.profile) {
-      const {dispatch} = nextProps
-      dispatch(fetchProfileIfNeeded())
-    }
-  }
-
   render() {
     const {
-      profile,
+      auth,
+      fetchAuthIfNeeded,
       isFetching,
-      lastUpdated
+      logout
     } = this.props;
-
-    const isEmpty = profile == null;
+    const isEmpty = auth == null;
     return (
       <div className="App">
         <div className="App-header">
@@ -40,14 +28,14 @@ class App extends Component {
         </div>
         <p className="App-intro">
           {!isFetching &&
-            <SignInButton />
+            <SignInButton id={auth.id} signInClick={fetchAuthIfNeeded} signOutClick={logout}/>
           }
         </p>
         {isEmpty
-          ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
-          : <p style={{ opacity: isFetching ? 0.5 : 1 }}>
-              <Profile {...profile} />
-            </p>
+          ? (isFetching ? <h2>Logging in...</h2> : <h2>Empty.</h2>)
+          : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+              <Profile />
+            </div>
         }
       </div>
     );
@@ -55,20 +43,18 @@ class App extends Component {
 }
 
 const reduxStateToProps = state => {
-  const { profile } = state
   const {
-    isFetching,
-    lastUpdated
-  } = profile || {
-    isFetching: true,
-    profile: null
-  }
+    auth,
+    isFetching
+  } = state;
 
   return {
-    profile,
-    isFetching,
-    lastUpdated
+    auth,
+    isFetching
   }
 }
 
-export default connect(reduxStateToProps)(App);
+export default connect(reduxStateToProps, {
+  fetchAuthIfNeeded,
+  logout
+})(App)
