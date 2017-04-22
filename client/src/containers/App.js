@@ -24,7 +24,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to Resume</h2>
+          <h2>Welcome to Resumé</h2>
         </div>
         <p className="App-intro">
           {!isFetching &&
