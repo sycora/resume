@@ -5,11 +5,6 @@ export const invalidateAuth = () => ({
 const fetchAuth = state => dispatch => {
   dispatch({type: 'REQUEST_AUTH'});
   window.IN.User.authorize();
-  window.IN.Event.on(window.IN, 'auth', dispatch({
-    type: 'RECEIVE_AUTH',
-    item: window.IN.User.getMemberId(),
-    receivedAt: Date.now()
-  }));
 };
 
 const shouldFetchAuth = state => {

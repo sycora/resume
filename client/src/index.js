@@ -9,6 +9,12 @@ import {HashRouter, Route} from 'react-router-dom';
 const store = configureStore();
 
 window.loaded = function() {
+  window.IN.Event.on(window.IN, 'auth', () => store.dispatch({
+    type: 'RECEIVE_AUTH',
+    item: window.IN.User.getMemberId(),
+    receivedAt: Date.now()
+  }));
+
   ReactDOM.render(
     <Provider store={store}>
       <HashRouter>
