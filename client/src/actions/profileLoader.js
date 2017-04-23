@@ -4,7 +4,7 @@ export const invalidateProfile = profile => ({
 
 const fetchProfile = state => dispatch => {
   dispatch({type: 'REQUEST_PROFILE'});
-  window.IN.API.Profile('me').result((result) => {
+  window.IN.API.Raw().url('people::(~):(id,first-name,last-name,maiden-name,formatted-name,phonetic-first-name,phonetic-last-name,formatted-phonetic-name,headline,location,industry,current-share,num-connections,num-connections-capped,summary,specialties,positions,picture-url,picture-urls::(original),site-standard-profile-request,api-standard-profile-request,public-profile-url,email-address)').result((result) => {
     dispatch({
       type: 'RECEIVE_PROFILE',
       item: result.values[0],
