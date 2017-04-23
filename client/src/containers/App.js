@@ -2,7 +2,7 @@ import './App.css';
 import Profile from './Profile';
 import SignInButton from '../components/SignInButton';
 import logo from './logo.svg';
-import {authLoader, logout} from '../actions/auth';
+import {authLoader, logout} from '../actions/authLoader';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';

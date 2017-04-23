@@ -1,4 +1,4 @@
-import {profileLoader} from '../actions/profile';
+import {profileLoader} from '../actions/profileLoader';
 import User from '../components/User';
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
