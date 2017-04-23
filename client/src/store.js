@@ -9,8 +9,20 @@ if (process.env.NODE_ENV === 'production') {
     applyMiddleware(thunk)
   );
 } else {
-  module.exports.configureStore = () => createStore(
-    reducers,
-    applyMiddleware(thunk, createLogger()),
-  );
+  module.exports.configureStore = () => {
+    const store = createStore(
+      reducers,
+      applyMiddleware(thunk, createLogger()),
+    );
+
+    if (module.hot) {
+      // Enable Webpack hot module replacement for reducers
+      module.hot.accept('./reducers', () => {
+        const nextRootReducer = require('./reducers').default
+        store.replaceReducer(nextRootReducer)
+      });
+    }
+
+    return store;
+  }
 }

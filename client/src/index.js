@@ -8,13 +8,7 @@ import {HashRouter, Route} from 'react-router-dom';
 
 const store = configureStore();
 
-window.loaded = function() {
-  window.IN.Event.on(window.IN, 'auth', () => store.dispatch({
-    type: 'RECEIVE_AUTH',
-    item: window.IN.User.getMemberId(),
-    receivedAt: Date.now()
-  }));
-
+const render = (App) =>
   ReactDOM.render(
     <Provider store={store}>
       <HashRouter>
@@ -25,4 +19,21 @@ window.loaded = function() {
     </Provider>,
     document.getElementById('root')
   );
+
+window.loaded = function() {
+  window.IN.Event.on(window.IN, 'auth', () => store.dispatch({
+    type: 'RECEIVE_AUTH',
+    item: window.IN.User.getMemberId(),
+    receivedAt: Date.now()
+  }));
+
+  render(App);
+}
+
+
+if (module.hot) {
+  module.hot.accept('./containers/App', () => {
+    const nextApp = require('./containers/App').default;
+    render(nextApp);
+  });
 }
