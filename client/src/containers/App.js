@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Welcome to Resumé</h2>
+          <h2>Welcome to Résumé</h2>
         </div>
         <p className="App-intro">
           {!isFetching &&
