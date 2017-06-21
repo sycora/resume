@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
+import FlatButton from 'material-ui/FlatButton';
 
 class SignInButton extends Component {
   render() {
     if (this.props.id) {
       return (
-        <button onClick={() => this.props.signOutClick()}>Sign Out</button>
+        <FlatButton onClick={() => this.props.signOutClick()}>Sign Out</FlatButton>
       );
     } else {
       return (
-        <button onClick={() => this.props.signInClick()}>Sign In</button>
+        <FlatButton style={{padding: 8, height: 60}} onClick={() => this.props.signInClick()}><img src={require('../images/logos/linkedin.png')} alt="sign in with linkedin"  width={160}/></FlatButton>
       );
     }
   }
