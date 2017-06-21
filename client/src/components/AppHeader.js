@@ -19,19 +19,19 @@ const styleMain = {
 };
 
 const styleContainer = {
-    'background-color': '#3F435E',
-    'box-sizing': 'border-box',
+    'backgroundColor': '#3F435E',
+    'boxSizing': 'border-box',
     width: '120%',
     height: '100%',
-    '-webkit-transform-origin': '0 100%',
-    'transform-origin': '0 100%',
+    'WebkitTransformOrigin': '0 100%',
+    'transformOrigin': '0 100%',
     transform: 'rotate(-23.6deg) translate(49px, -1px)',
     color: '#FFF',
 };
 
 const styleImage = {
     background: '#AA3C2D',
-    'border-radius': '50%',
+    'borderRadius': '50%',
     bottom: -20,
     height: 60,
     left: 160,
@@ -41,8 +41,8 @@ const styleImage = {
 
 const styleTitle = {
     color: 'white',
-    'font-family': `'Racing Sans One', cursive`,
-    'font-size': 36,
+    'fontFamily': `'Racing Sans One', cursive`,
+    'fontSize': 36,
     margin: '0 8px'
 
 }
