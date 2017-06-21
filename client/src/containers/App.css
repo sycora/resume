@@ -12,3 +12,12 @@
 .App-intro {
   font-size: large;
 }
+
+@media screen and (min-width: 960px) {
+  .App-header{
+    margin-left: 300px;
+  }
+  main.App-content {
+    margin-left: 300px;
+  }
+}
