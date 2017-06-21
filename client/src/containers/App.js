@@ -1,5 +1,6 @@
 import './App.css';
 import Profile from './Profile';
+import AppHeader from '../components/AppHeader';
 import SignInButton from '../components/SignInButton';
 import {authLoader, logout} from '../actions/authLoader';
 import PropTypes from 'prop-types';
@@ -22,6 +23,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+          <AppHeader/>
           <h2>Welcome to Résumé</h2>
         </div>
         <p className="App-intro">
