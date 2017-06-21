@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {HashRouter, Route} from 'react-router-dom';
+import WebFont from 'webfontloader';
 
 const store = configureStore();
 
@@ -28,6 +29,12 @@ window.loaded = function() {
   }));
 
   render(App);
+
+  WebFont.load({
+  google: {
+    families: ['Racing Sans One','Space+Mono:400,700', 'sans-serif']
+  }
+});
 }
 
 
