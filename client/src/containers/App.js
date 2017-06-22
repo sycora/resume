@@ -41,8 +41,7 @@ class App extends Component {
   }
 
   updateWindowDimensions() {
-    console.log()
-    const drawerSize = window.innerWidth >= 960
+    const drawerSize = this.props.auth.id ? 300 : window.innerWidth >= 960
       ? 300
       : '100%';
     this.setState({drawerWidth: drawerSize, width: window.innerWidth, height: window.innerHeight});
