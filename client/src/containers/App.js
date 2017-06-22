@@ -42,7 +42,9 @@ class App extends Component {
 
   updateWindowDimensions() {
     console.log()
-    const drawerSize = window.innerWidth >= 960 ? 300 : '100%';
+    const drawerSize = window.innerWidth >= 960
+      ? 300
+      : '100%';
     this.setState({drawerWidth: drawerSize, width: window.innerWidth, height: window.innerHeight});
   }
 
@@ -57,32 +59,22 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App">
           <Drawer open={this.state.drawerOpen} width={this.state.drawerWidth}>
-            <AppHeader/>
-            <MenuItem>Menu Item</MenuItem>
-            <MenuItem>Menu Item 2</MenuItem>
+            <AppHeader/> {auth.id
+              ? <div>
+                  <MenuItem>Menu Item</MenuItem>
+                  <MenuItem>Menu Item 2</MenuItem>
+                </div>
+              : <MediaQuery maxWidth={959}>
+                <PageWelcome/>
+              </MediaQuery>
+}
           </Drawer>
 
           <div className="App-header">
             <h2>Welcome to Résumé</h2>
           </div>
           <main className="App-content">
-            <p className="App-intro">
-              {!isFetching && <SignInButton id={auth.id} signInClick={authLoader} signOutClick={logout}/>
-}
-            </p>
-            {isEmpty
-              ? (isFetching
-                ? <h2>Logging in...</h2>
-                : <h2>Empty.</h2>)
-              : <div
-                style={{
-                opacity: isFetching
-                  ? 0.5
-                  : 1
-              }}>
-                <Profile/>
-              </div>
-}
+            {auth.id ? <Profile /> : <MediaQuery minWidth={960}><PageWelcome/></MediaQuery>}
           </main>
         </div>
       </MuiThemeProvider>
