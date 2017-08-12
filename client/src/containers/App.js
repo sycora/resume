@@ -43,7 +43,7 @@ class App extends Component {
   updateWindowDimensions() {
     const drawerSize = this.props.auth.id ? 300 : window.innerWidth >= 960
       ? 300
-      : '100%';
+      : window.innerWidth;
     this.setState({drawerWidth: drawerSize, width: window.innerWidth, height: window.innerHeight});
   }
 
@@ -52,13 +52,13 @@ class App extends Component {
   });
 
   render() {
-    const {auth, authLoader, isFetching, logout} = this.props;
+    const {auth, authLoader, isFetching, logout, me} = this.props;
     const isEmpty = auth == null;
     return (
       <MuiThemeProvider>
         <div className="App">
-          <Drawer open={this.state.drawerOpen} width={this.state.drawerWidth}>
-            <AppHeader/> {auth.id
+          <Drawer open={this.state.drawerOpen} width={this.state.drawerWidth} className="App-drawer">
+            <AppHeader {...auth} {...me} /> {auth.id
               ? <div>
                   <MenuItem>Menu Item</MenuItem>
                   <MenuItem>Menu Item 2</MenuItem>
@@ -83,9 +83,9 @@ class App extends Component {
 }
 
 const reduxStateToProps = state => {
-  const {auth, isFetching} = state;
+  const {auth, isFetching, me} = state;
 
-  return {auth, isFetching}
+  return {auth, isFetching, me}
 }
 
 export default connect(reduxStateToProps, {authLoader, logout})(App)

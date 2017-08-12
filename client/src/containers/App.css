@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.App-drawer {
+  width: 100% !important;
+}
+
 .App-header {
   background-color: #222;
   height: 80px;
@@ -14,7 +18,10 @@
 }
 
 @media screen and (min-width: 960px) {
-  .App-header{
+  .App-drawer {
+    width: 300px !important;
+  }
+  .App-header {
     margin-left: 300px;
   }
   main.App-content {
