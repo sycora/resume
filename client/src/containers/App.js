@@ -2,11 +2,9 @@ import './App.css';
 import Profile from './Profile';
 import AppHeader from '../components/AppHeader';
 import PageWelcome from '../components/PageWelcome';
-import SignInButton from '../components/SignInButton';
-import {authLoader, logout} from '../actions/authLoader';
+import {logout} from '../actions/authLoader';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
@@ -26,9 +24,7 @@ class App extends Component {
       width: '0',
       height: '0'
     };
-    this.updateWindowDimensions = this
-      .updateWindowDimensions
-      .bind(this);
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
   componentDidMount() {
@@ -54,61 +50,52 @@ class App extends Component {
   });
 
   render() {
-    const {auth, authLoader, isFetching, logout, me} = this.props;
-    const isEmpty = auth == null;
+    const {auth, me} = this.props;
     return (
       <MuiThemeProvider>
         <div className="App-wrapper">
-        {/* Mobile*/}
-        <MediaQuery maxWidth={959}>
-          <div className="App">
-            <AppHeader {...auth} {...me}/>
-            <main className="App-content">
-              {auth.id
-                ? <Profile/>
-                : <PageWelcome/>}
-            </main>
-          </div>
-        </MediaQuery>
-        {/* Desktop */}
-        <MediaQuery minWidth={960}>
-          <div className="App">
+          {/* Mobile*/}
+          <MediaQuery maxWidth={959}>
+            <div className="App">
+              <AppHeader auth={auth} me={me}/>
+              <main className="App-content">
+                <Profile/>
+              </main>
+            </div>
+          </MediaQuery>
+          {/* Desktop */}
+          <MediaQuery minWidth={960}>
+            <div className="App">
 
-            <Drawer
-              open={this.state.drawerOpen}
-              width={this.state.drawerWidth}
-              className="App-drawer">
-              <AppHeader {...auth} {...me}/> 
-                {auth.id
-                  ? (<div>
+              <Drawer open={this.state.drawerOpen} width={this.state.drawerWidth} className="App-drawer">
+                <AppHeader {...auth} {...me}/> {auth.id
+                  ? (
+                    <div>
                       <MenuItem>Menu Item</MenuItem>
                       <MenuItem>Menu Item 2</MenuItem>
-                    </div>)
+                    </div>
+                  )
                   : null
-                  }
-            </Drawer>
+}
+              </Drawer>
 
-            <div className="App-header">
-              <h2>Welcome to Résumé</h2>
+              <div className="App-header">
+                <h2>Welcome to Résumé</h2>
+              </div>
+              <main className="App-content">
+                <Profile/>
+              </main>
             </div>
-            <main className="App-content">
-              {auth.id
-                ? <Profile/>
-                : <PageWelcome/>}
-            </main>
-          </div>
-        </MediaQuery>
+          </MediaQuery>
         </div>
       </MuiThemeProvider>
-
     );
   }
 }
 
 const reduxStateToProps = state => {
   const {auth, isFetching, me} = state;
-
-  return {auth, isFetching, me}
+  return {auth, isFetching, me};
 }
 
-export default connect(reduxStateToProps, {authLoader, logout})(App)
+export default connect(reduxStateToProps, {logout})(App)
