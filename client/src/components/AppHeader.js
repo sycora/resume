@@ -57,7 +57,7 @@ class AppHeader extends Component {
             left: 0
           }}>
             <h3 style={styleTitle}>Résumé</h3>
-            {me.profile && me.profile.smallPictureUrl
+            {me && me.profile && me.profile.smallPictureUrl
               ? (<img style={styleImage} src={me.profile.smallPictureUrl}/>)
               : (<img style={styleImage} src="" alt=""/>)}
           </div>
