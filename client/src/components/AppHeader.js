@@ -25,7 +25,7 @@ const styleContainer = {
     height: '100%',
     'WebkitTransformOrigin': '0 100%',
     'transformOrigin': '0 100%',
-    transform: 'rotate(-23.6deg) translate(49px, -1px)',
+    transform: 'rotate(-23.6deg) translate(42px, 16px)',
     color: '#FFF'
 };
 
