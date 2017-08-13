@@ -31,7 +31,7 @@ class User extends Component {
       <div>
         <h2>Profile</h2>
         <section>
-          <img alt="large profile" src={largePictureUrl} />
+          <img alt="large profile" src={largePictureUrl} hidden/>
           <h3>{formattedName} - {headline}</h3>
           {location}
         </section>
