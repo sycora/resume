@@ -2,6 +2,7 @@ import './App.css';
 import Profile from './Profile';
 import AppHeader from '../components/AppHeader';
 import PageWelcome from '../components/PageWelcome';
+import SignInButton from '../components/SignInButton';
 import {logout} from '../actions/authLoader';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
@@ -45,6 +46,11 @@ class App extends Component {
     this.setState({drawerWidth: drawerSize, width: window.innerWidth, height: window.innerHeight});
   }
 
+  handleSignOut = () => {
+    console.log('APP_Logout')
+    return logout();
+  }
+
   handleToggle = () => this.setState({
     drawerOpen: !this.state.open
   });
@@ -72,16 +78,14 @@ class App extends Component {
                   ? (
                     <div>
                       <MenuItem>Menu Item</MenuItem>
-                      <MenuItem>Menu Item 2</MenuItem>
+                      <MenuItem>Templates</MenuItem>
+                      <hr/>
+                      <MenuItem onClick={this.handleSignOut()}>Sign Out</MenuItem>
                     </div>
                   )
                   : null
-}
+                  }
               </Drawer>
-
-              <div className="App-header">
-                <h2>Welcome to Résumé</h2>
-              </div>
               <main className="App-content">
                 <Profile/>
               </main>

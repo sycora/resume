@@ -1,3 +1,4 @@
+import './PageWelcome.css'
 import SignInButton from '../components/SignInButton';
 import {authLoader, logout} from '../actions/authLoader';
 import React, {Component} from 'react';
