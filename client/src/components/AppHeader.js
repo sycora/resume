@@ -33,7 +33,8 @@ const styleImage = {
   height: 60,
   left: 160,
   position: 'absolute',
-  width: 60
+  width: 60,
+  transform: 'rotate(23.6deg)',
 }
 
 const styleTitle = {
@@ -44,11 +45,32 @@ const styleTitle = {
 
 }
 
+const styleName = {
+  color: 'white',
+  'fontFamily': `'Racing Sans One', cursive`,
+  'fontSize': 16,
+  margin: '0 8px'
+
+}
+
 class AppHeader extends Component {
   render() {
     const {auth, me} = this.props;
-
-    return (
+    console.log('APP_HEADER',me)
+    return me && me.profile ?
+       <main style={styleMain}>
+        <div style={styleContainer}>
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0
+          }}>
+            <p style={styleName}>{me.profile.formattedName}</p>
+            <img style={styleImage} src={me.profile.pictureUrl}/>
+          </div>
+        </div>
+      </main> :
+     (
       <main style={styleMain}>
         <div style={styleContainer}>
           <div style={{
@@ -57,9 +79,7 @@ class AppHeader extends Component {
             left: 0
           }}>
             <h3 style={styleTitle}>Résumé</h3>
-            {me && me.profile && me.profile.smallPictureUrl
-              ? (<img style={styleImage} src={me.profile.smallPictureUrl}/>)
-              : (<img style={styleImage} src="" alt=""/>)}
+            <img style={styleImage} src="" alt=""/>
           </div>
         </div>
       </main>

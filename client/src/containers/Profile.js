@@ -27,7 +27,7 @@ class Profile extends Component {
         }
       </div>
     ) : (
-      <MediaQuery minWidth={960}><PageWelcome/></MediaQuery>
+      <PageWelcome/>
     );
   }
 }
