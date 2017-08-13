@@ -68,7 +68,7 @@ class App extends Component {
             <div className="App">
 
               <Drawer open={this.state.drawerOpen} width={this.state.drawerWidth} className="App-drawer">
-                <AppHeader {...auth} {...me}/> {auth.id
+                <AppHeader auth={auth} me={me}/> {auth.id
                   ? (
                     <div>
                       <MenuItem>Menu Item</MenuItem>
