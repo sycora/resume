@@ -41,9 +41,11 @@ class App extends Component {
   }
 
   updateWindowDimensions() {
-    const drawerSize = this.props.auth.id ? 300 : window.innerWidth >= 960
+    const drawerSize = this.props.auth.id
       ? 300
-      : window.innerWidth;
+      : window.innerWidth >= 960
+        ? 300
+        : window.innerWidth;
     this.setState({drawerWidth: drawerSize, width: window.innerWidth, height: window.innerHeight});
   }
 
@@ -56,25 +58,46 @@ class App extends Component {
     const isEmpty = auth == null;
     return (
       <MuiThemeProvider>
-        <div className="App">
-          <Drawer open={this.state.drawerOpen} width={this.state.drawerWidth} className="App-drawer">
-            <AppHeader {...auth} {...me} /> {auth.id
-              ? <div>
-                  <MenuItem>Menu Item</MenuItem>
-                  <MenuItem>Menu Item 2</MenuItem>
-                </div>
-              : <MediaQuery maxWidth={959}>
-                <PageWelcome/>
-              </MediaQuery>
-}
-          </Drawer>
-
-          <div className="App-header">
-            <h2>Welcome to Résumé</h2>
+        <div className="App-wrapper">
+        {/* Mobile*/}
+        <MediaQuery maxWidth={959}>
+          <div className="App">
+            <AppHeader {...auth} {...me}/>
+            <main className="App-content">
+              {auth.id
+                ? <Profile/>
+                : <PageWelcome/>}
+            </main>
           </div>
-          <main className="App-content">
-            {auth.id ? <Profile /> : <MediaQuery minWidth={960}><PageWelcome/></MediaQuery>}
-          </main>
+        </MediaQuery>
+        {/* Desktop */}
+        <MediaQuery minWidth={960}>
+          <div className="App">
+
+            <Drawer
+              open={this.state.drawerOpen}
+              width={this.state.drawerWidth}
+              className="App-drawer">
+              <AppHeader {...auth} {...me}/> 
+                {auth.id
+                  ? (<div>
+                      <MenuItem>Menu Item</MenuItem>
+                      <MenuItem>Menu Item 2</MenuItem>
+                    </div>)
+                  : <PageWelcome/>
+                  }
+            </Drawer>
+
+            <div className="App-header">
+              <h2>Welcome to Résumé</h2>
+            </div>
+            <main className="App-content">
+              {auth.id
+                ? <Profile/>
+                : <PageWelcome/>}
+            </main>
+          </div>
+        </MediaQuery>
         </div>
       </MuiThemeProvider>
 
