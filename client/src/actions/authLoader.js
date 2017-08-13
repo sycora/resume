@@ -28,5 +28,8 @@ export const authLoader = () => {
 
 export const logout = () => dispatch => {
   window.IN.User.logout();
+<<<<<<< HEAD
   dispatch({type: 'LOGOUT'});
+=======
+>>>>>>> attempt to fix logout
 };

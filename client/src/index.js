@@ -32,6 +32,10 @@ window.loaded = function() {
     receivedAt: Date.now()
   }));
 
+  window.IN.Event.on(window.IN, 'logout', () => store.dispatch({
+    type: 'LOGOUT'
+  }));
+
   render(App);
 
   WebFont.load({
