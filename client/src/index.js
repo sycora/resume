@@ -1,5 +1,6 @@
 import App from './containers/App';
 import './index.css';
+import registerServiceWorker from './registerServiceWorker';
 import {configureStore} from './store';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -37,6 +38,7 @@ window.loaded = function() {
   }));
 
   render(App);
+  registerServiceWorker();
 
   WebFont.load({
   google: {
